@@ -1,0 +1,19 @@
+[install]
+# Configure package installation
+cache = true
+exact = false
+frozenLockfile = false
+
+[test]
+# Configure test runner
+coverage = true
+timeout = 30000
+
+[run]
+# Configure script runner
+shell = "system"
+
+[build]
+# Configure build settings
+minify = false
+sourcemap = true

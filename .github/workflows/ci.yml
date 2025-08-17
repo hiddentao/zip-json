@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+
+    - name: Install dependencies
+      run: bun install
+
+    - name: Run linting and formatting checks
+      run: bun run check
+
+    - name: Run tests with coverage
+      run: bun test --coverage
+
+    - name: Upload coverage to Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        format: lcov
+        file: coverage/lcov.info
