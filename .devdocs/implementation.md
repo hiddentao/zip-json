@@ -12,6 +12,7 @@ This document provides detailed information about the zip-json implementation, a
 - [Error Handling](#error-handling)
 - [Testing Strategy](#testing-strategy)
 - [Build Process](#build-process)
+- [Development Workflow](#development-workflow)
 - [Performance Considerations](#performance-considerations)
 
 ## Architecture Overview
@@ -180,7 +181,7 @@ export async function setFilePermissions(filePath: string, mode: number): Promis
 
 ### Glob Pattern Processing
 
-Glob patterns are processed using the `fast-glob` library with custom normalization:
+Glob patterns are processed using the `glob` library with custom normalization:
 
 ```typescript
 // Pattern normalization
@@ -271,7 +272,7 @@ Error
 ### Test Coverage
 
 **Current Metrics:**
-- Line Coverage: 97.80%
+- Line Coverage: 97.00%
 - Function Coverage: 93.09%
 - Branch Coverage: >90%
 
@@ -329,10 +330,11 @@ module.exports = { zip, unzip, list }
 
 Custom build script (`scripts/build.ts`) handles:
 1. Clean previous build outputs
-2. Compile TypeScript for both module formats
-3. Generate declaration files
-4. Copy package.json with module field updates
-5. Generate CLI shebang files
+2. Create directory structure
+3. Compile TypeScript declarations
+4. Build ESM and CommonJS formats using Bun.build()
+5. Generate CLI executable with proper shebang
+6. Set executable permissions
 
 ### Bundle Analysis
 
@@ -341,6 +343,107 @@ Custom build script (`scripts/build.ts`) handles:
 - CLI wrapper: ~5KB
 - Type definitions: ~3KB
 - Total package: ~35KB
+
+## Development Workflow
+
+### Git Hooks with Husky
+
+The project uses Husky for automated Git hooks to ensure code quality and consistent commit messages:
+
+**Pre-commit Hook (`.husky/pre-commit`):**
+```bash
+bun run check
+```
+- Runs Biome linting and formatting checks
+- Prevents commits with code style issues
+- Ensures all staged code passes quality standards
+
+**Commit Message Hook (`.husky/commit-msg`):**
+```bash
+bunx commitlint --edit $1
+```
+- Validates commit messages against conventional commit format
+- Enforces consistent commit message structure
+- Supports automated changelog generation
+
+### Conventional Commits
+
+The project follows the Conventional Commits specification for structured commit messages:
+
+**Supported Types:**
+- `feat` - New features
+- `fix` - Bug fixes
+- `docs` - Documentation changes
+- `style` - Code formatting changes
+- `refactor` - Code restructuring without functional changes
+- `perf` - Performance improvements
+- `test` - Test additions or modifications
+- `build` - Build system changes
+- `ci` - CI/CD configuration changes
+- `chore` - Maintenance tasks
+
+**Commit Format:**
+```
+type(scope): description
+
+[optional body]
+
+[optional footer]
+```
+
+**Example Commits:**
+```bash
+feat: add progress tracking to compression
+fix: resolve memory leak in large file processing
+docs: update api documentation for new features
+```
+
+### Development Scripts
+
+**Code Quality:**
+```bash
+bun run check      # Full linting and type checking
+bun run lint       # Auto-fix linting issues
+bun run format     # Format code with Biome
+```
+
+**Testing:**
+```bash
+bun run test              # Run all tests
+bun run test:coverage     # Run tests with coverage
+bun run test:watch        # Watch mode for development
+```
+
+**Building:**
+```bash
+bun run build             # Full production build
+bun run build:watch       # Watch mode for development
+```
+
+**Committing:**
+```bash
+bun run commit            # Interactive commit with Commitizen
+git commit -m "feat: ..."  # Manual conventional commit
+```
+
+### Code Quality Tools
+
+**Biome Configuration:**
+- ESLint-compatible linting rules
+- Prettier-compatible formatting
+- TypeScript-aware static analysis
+- Import organization and optimization
+
+**TypeScript Configuration:**
+- Strict mode enabled
+- Exact optional property types
+- No unused variables/parameters
+- Comprehensive type checking
+
+**Commitlint Configuration:**
+- Conventional commit format enforcement
+- Custom rules for project-specific requirements
+- Integration with automated release tools
 
 ## Performance Considerations
 

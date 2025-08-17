@@ -89,7 +89,6 @@ zip-json zip "src/**/*" -o backup.json --quiet
 - 📖 [API Documentation](docs/api.md) - Complete API reference
 - 🖥️ [CLI Documentation](docs/cli.md) - Command-line interface guide
 - 📋 [Type Definitions](docs/types.md) - TypeScript type reference
-- 🏗️ [Implementation Details](/.devdocs/implementation.md) - Architecture and internals
 
 ## Examples
 
@@ -229,28 +228,6 @@ zip-json uses a structured JSON format optimized for both human readability and 
 - **Base64 encoding**: JSON-safe binary data representation
 - **Version tracking**: Future-proof format evolution
 - **Rich metadata**: File permissions, timestamps, and directory structure
-
-## Performance
-
-### Benchmarks
-
-Tested with 1,000 TypeScript files (~100MB total):
-
-| Operation | Time | Memory Peak |
-|-----------|------|-------------|
-| Archive   | ~15s | ~200MB     |
-| Extract   | ~8s  | ~150MB     |
-| List      | ~100ms | ~50MB    |
-
-### Compression Ratios
-
-Typical compression ratios by content type:
-
-| Content Type | Compression Ratio |
-|--------------|-------------------|
-| Text files   | 60-80%           |
-| Binary files | 20-40%           |
-| Mixed content| 40-60%           |
 
 ## API Reference
 
