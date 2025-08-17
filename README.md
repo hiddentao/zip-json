@@ -10,17 +10,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
-A tool for compressing files and directories into JSON format, optimized for Bun binaries and other JavaScript runtimes.
+A tool for compressing files and directories into JSON format that can be extracted and used at runtime.
 
-## Why zip-json?
+## 🎯 **Perfect for Bun Native Binaries**
 
-Unlike traditional zip files, zip-json creates archives in JSON format that can be easily:
+**zip-json** enables you to generate Bun native binaries with files and folders embedded within, which can then be extracted and used at runtime. This is especially powerful for:
 
-- **Embedded in JavaScript bundles** without additional file handling
-- **Stored in databases** as JSON documents
-- **Transmitted over APIs** as standard JSON payloads
-- **Version controlled** with meaningful diffs
-- **Processed by any JSON-capable system**
+- **📁 Bundling Drizzle ORM migration scripts** into a single executable
+- **⚡ Embedding assets directly in native binaries** for zero-dependency distribution
+- **🚀 Creating portable CLI tools** with all resources included
+- **📦 Building self-contained applications** that don't require external files
 
 Perfect for bundling assets, creating portable backups, or embedding resources directly in your applications.
 
@@ -95,6 +94,7 @@ zip-json zip "src/**/*" -o backup.json --quiet
 - 📋 [Type Definitions](docs/types.md) - TypeScript type reference
 
 ## Examples
+
 
 ### Basic File Archiving
 
@@ -200,6 +200,54 @@ const filteredArchive = {
 // Extract only JavaScript files
 await unzip(filteredArchive, { outputDir: './js-only' })
 ```
+
+### Bun Native Binary with Embedded Files
+
+Create a native binary with embedded Drizzle ORM scripts:
+
+```typescript
+// build-binary.ts
+import { zip } from '@hiddentao/zip-json'
+import { writeFileSync } from 'fs'
+
+// 1. Bundle your migration files into JSON
+const migrationArchive = await zip(['drizzle/**/*.sql', 'drizzle/meta/**/*'], {
+  baseDir: './database',
+  ignore: ['node_modules/**']
+})
+
+// 2. Create embedded archive module
+const embeddedModule = `
+// embedded-migrations.ts
+export const MIGRATION_ARCHIVE = ${JSON.stringify(migrationArchive, null, 2)}
+`
+writeFileSync('src/embedded-migrations.ts', embeddedModule)
+
+// 3. Build native binary with Bun
+// bun build --compile --minify src/cli.ts --outfile my-app
+```
+
+```typescript
+// cli.ts - Your application entry point
+import { unzip } from '@hiddentao/zip-json'
+import { MIGRATION_ARCHIVE } from './embedded-migrations.js'
+
+async function runMigrations() {
+  // Extract migrations at runtime
+  const extractedFiles = await unzip(MIGRATION_ARCHIVE, {
+    outputDir: './temp/migrations'
+  })
+  
+  // Now run your Drizzle migrations
+  console.log(`Extracted ${extractedFiles.length} migration files`)
+  // ... run drizzle migrate logic
+}
+
+// Your native binary now contains all migration files!
+await runMigrations()
+```
+
+**Result:** A single native executable containing all your database migration scripts, with zero external dependencies!
 
 ## Archive Format
 

@@ -1,14 +1,20 @@
 {
   "name": "@hiddentao/zip-json",
-  "version": "1.0.0",
-  "description": "Zip files and folders into a JSON format for bundling and runtime extraction",
+  "version": "1.0.1",
+  "description": "Zip files and folders into JSON format for Bun native binaries with runtime extraction - perfect for embedding Drizzle ORM scripts",
   "keywords": [
     "zip",
     "json",
     "bundle",
     "compress",
     "archive",
-    "bun"
+    "bun",
+    "native",
+    "binary",
+    "embedded",
+    "drizzle",
+    "runtime",
+    "extraction"
   ],
   "author": "Ramesh Nair <ram@hiddentao.com>",
   "license": "MIT",
