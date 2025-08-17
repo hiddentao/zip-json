@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="logo.png" alt="zip-json" width="200" height="200" />
+</div>
+
 # zip-json
 
 [![CI](https://github.com/hiddentao/zip-json/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hiddentao/zip-json/actions/workflows/ci.yml)
@@ -467,20 +471,6 @@ MIT License - see [LICENSE.md](LICENSE.md) for details.
 
 ## Support
 
-- 📧 **Issues**: [GitHub Issues](https://github.com/your-username/zip-json/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/your-username/zip-json/discussions)
+- 📧 **Issues**: [GitHub Issues](https://github.com/hiddentao/zip-json/issues)
 - 📖 **Documentation**: [docs/](docs/)
 
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for release history and breaking changes.
-
----
-
-<div align="center">
-
-**Made with ❤️ for the JavaScript community**
-
-[⭐ Star on GitHub](https://github.com/your-username/zip-json) | [📦 View on npm](https://npmjs.com/package/zip-json) | [📖 Read the Docs](docs/)
-
-</div>
