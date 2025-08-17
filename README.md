@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.png" alt="zip-json" width="200" height="200" />
+  <img src="logo.png" alt="zip-json" width="300" height="300" />
 </div>
 
 # zip-json
