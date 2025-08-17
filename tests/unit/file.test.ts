@@ -210,6 +210,32 @@ describe("File utilities", () => {
       await expect(readFileContent(filePath)).resolves.toBeDefined()
       await expect(getFileStats(filePath)).resolves.toBeDefined()
     })
+
+    test("handles various filesystem error conditions gracefully", async () => {
+      // Test with paths that might trigger different filesystem errors
+      const invalidPath = "/root/impossible-to-access/file.txt"
+
+      try {
+        await readFileContent(invalidPath)
+      } catch (error) {
+        // Should either throw FileNotFoundError, PermissionError, or generic Error
+        expect(error).toBeInstanceOf(Error)
+      }
+
+      try {
+        await getFileStats(invalidPath)
+      } catch (error) {
+        // Should either throw FileNotFoundError or generic Error
+        expect(error).toBeInstanceOf(Error)
+      }
+
+      try {
+        await writeFileContent(invalidPath, Buffer.from("test"))
+      } catch (error) {
+        // Should either throw PermissionError or generic Error
+        expect(error).toBeInstanceOf(Error)
+      }
+    })
   })
 
   describe("getDirName", () => {

@@ -91,7 +91,7 @@ describe("Format utilities", () => {
   })
 
   describe("formatPath edge cases", () => {
-    test("handles path with only two segments that exceeds limit", () => {
+    test("truncates paths with only two segments using ellipsis prefix", () => {
       const path =
         "very-long-directory-name/very-long-file-name-that-exceeds-limit.txt"
       const result = formatPath(path, 30)
@@ -99,48 +99,66 @@ describe("Format utilities", () => {
       expect(result.startsWith("...")).toBe(true)
     })
 
-    test("handles complex path truncation", () => {
+    test("truncates complex multi-segment paths with ellipsis", () => {
       const path = "first/second/third/fourth/fifth/file.txt"
       const result = formatPath(path, 25)
       expect(result.length).toBeLessThanOrEqual(25)
       expect(result).toContain("...")
     })
 
-    test("handles path fallback case with very long path", () => {
-      // This test covers the edge case in formatPath where the final result
-      // might still exceed maxLength and needs the fallback return
+    test("handles extremely long paths that exceed all truncation attempts", () => {
       const path =
         "very-long-first-directory/extremely-long-final-file-name-that-exceeds-limit.txt"
       const result = formatPath(path, 15)
 
-      // Should contain ellipsis
+      // Should contain ellipsis even when result might still be long
       expect(result).toContain("...")
-      // Should be a reasonable length (this edge case may still be long)
       expect(result.length).toBeGreaterThan(10)
     })
 
-    test("triggers formatPath fallback condition", () => {
-      // Force the specific condition where finalResult.length > maxLength
-      // This should trigger lines 51-53 in formatPath
+    test("uses simple fallback format for very constrained length limits", () => {
       const path =
         "a/extremely-long-filename-that-will-exceed-maxlength-in-final-result.txt"
       const result = formatPath(path, 20)
 
-      // Should use the fallback pattern
+      // Should use the fallback pattern: first/...last
       expect(result).toContain("...")
       expect(result).toContain("a")
       expect(result).toContain(".txt")
     })
 
-    test("handles formatPath finalResult assignment (lines 51-53)", () => {
-      // Create a path that will trigger the result = finalResult assignment
-      // We need finalResult.length <= maxLength so it doesn't hit the early return on line 50
+    test("preserves optimal format when final result fits within limit", () => {
       const path = "longer-directory-name/second-directory/file.txt"
       const result = formatPath(path, 40)
 
-      // Should process normally and assign finalResult to result
+      // Should use the optimal ellipsis format
       expect(result).toBe("longer-directory-name/.../file.txt")
       expect(result.length).toBeLessThanOrEqual(40)
+    })
+
+    test("uses ultimate fallback when even optimized format is too long", () => {
+      const longFirst =
+        "extremely-long-first-directory-name-that-makes-final-result-too-long"
+      const longLast = "very-long-filename-with-extension.txt"
+      const path = `${longFirst}/middle/${longLast}`
+      const maxLength = 25
+
+      const result = formatPath(path, maxLength)
+
+      // Should use the most aggressive fallback format
+      expect(result).toBe(`${longFirst}/.../${longLast}`)
+      expect(result).toContain("...")
+      expect(result).toContain(longFirst)
+      expect(result).toContain(longLast)
+    })
+
+    test("successfully applies ellipsis format when it fits within constraints", () => {
+      const path = "directory/subdirectory/another/deep/file.txt"
+      const result = formatPath(path, 35)
+
+      // Should successfully use the ellipsis format
+      expect(result).toBe("directory/.../file.txt")
+      expect(result.length).toBeLessThanOrEqual(35)
     })
   })
 

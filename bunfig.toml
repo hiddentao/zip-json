@@ -8,6 +8,8 @@ frozenLockfile = false
 # Configure test runner
 coverage = true
 timeout = 30000
+# Exclude tests and fixtures from coverage results
+coverageExclude = ["tests/", "**/fixtures/**"]
 
 [run]
 # Configure script runner
