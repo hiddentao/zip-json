@@ -288,16 +288,7 @@ bun test --coverage
 bun test tests/unit/archiver.test.ts
 ```
 
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
 ## License
 
 MIT License - see [LICENSE.md](LICENSE.md) for details.
-
-## Support
-
-- 📧 **Issues**: [GitHub Issues](https://github.com/hiddentao/zip-json/issues)
-- 📖 **Documentation**: [docs/](docs/)
 
