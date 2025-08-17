@@ -74,6 +74,9 @@
     "node": ">=22.0.0"
   },
   "engineStrict": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
