@@ -249,17 +249,13 @@ await runMigrations()
 
 **Result:** A single native executable containing all your database migration scripts, with zero external dependencies!
 
-## Requirements
+### Development Setup
 
-- **Node.js**: 16.0.0 or higher
+Requirements
+
+- **Node.js**: 22.0.0 or higher
 - **Bun**: 1.0.0 or higher (recommended)
 - **TypeScript**: 4.5.0 or higher (for TypeScript projects)
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Setup
 
 ```bash
 # Clone repository
@@ -291,6 +287,10 @@ bun test --coverage
 # Run specific test file
 bun test tests/unit/archiver.test.ts
 ```
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ## License
 
