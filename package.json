@@ -2,7 +2,14 @@
   "name": "zip-json",
   "version": "1.0.0",
   "description": "Zip files and folders into a JSON format for bundling and runtime extraction",
-  "keywords": ["zip", "json", "bundle", "compress", "archive", "bun"],
+  "keywords": [
+    "zip",
+    "json",
+    "bundle",
+    "compress",
+    "archive",
+    "bun"
+  ],
   "author": "Your Name",
   "license": "MIT",
   "repository": {
@@ -33,13 +40,15 @@
     "build": "bun run scripts/build.ts",
     "build:watch": "bun run scripts/build.ts --watch",
     "test": "bun test",
-    "test:coverage": "bun test --coverage",
+    "test:coverage": "bun test --coverage --coverage-reporter=lcov",
     "test:watch": "bun test --watch",
     "lint": "biome check --apply ./src",
     "format": "biome format --write ./src ./tests",
     "check": "biome check ./src ./tests",
     "prepublishOnly": "bun run build && bun run test:coverage",
-    "postbuild": "chmod +x bin/zip-json.js"
+    "postbuild": "chmod +x bin/zip-json.js",
+    "prepare": "husky",
+    "commit": "cz"
   },
   "dependencies": {
     "commander": "^12.0.0",
@@ -47,13 +56,23 @@
     "chalk": "^5.3.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.5.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@types/bun": "latest",
     "@types/node": "^22.0.0",
-    "typescript": "^5.3.0",
-    "@biomejs/biome": "^1.5.0"
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
+    "typescript": "^5.3.0"
   },
   "engines": {
     "node": ">=22.0.0"
   },
-  "engineStrict": true
+  "engineStrict": true,
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }

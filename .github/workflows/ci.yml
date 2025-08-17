@@ -26,7 +26,7 @@ jobs:
       run: bun run check
 
     - name: Run tests with coverage
-      run: bun test --coverage
+      run: bun test --coverage --coverage-reporter=lcov
 
     - name: Upload coverage to Coveralls
       uses: coverallsapp/github-action@v2
