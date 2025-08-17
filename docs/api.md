@@ -14,15 +14,15 @@ This document provides comprehensive documentation for the zip-json API.
 ## Installation
 
 ```bash
-bun add zip-json
+bun add @hiddentao/zip-json
 # or
-npm install zip-json
+npm install @hiddentao/zip-json
 ```
 
 ## Quick Start
 
 ```typescript
-import { zip, unzip, list } from 'zip-json'
+import { zip, unzip, list } from '@hiddentao/zip-json'
 
 // Zip files to JSON
 const archive = await zip(['src/**/*.ts'], { baseDir: 'project' })
@@ -229,7 +229,7 @@ Thrown when compression/decompression fails.
 
 **Example:**
 ```typescript
-import { zip, FileNotFoundError, PermissionError } from 'zip-json'
+import { zip, FileNotFoundError, PermissionError } from '@hiddentao/zip-json'
 
 try {
   const archive = await zip(['src/**/*.ts'])
@@ -249,7 +249,7 @@ try {
 ### Basic File Archiving
 
 ```typescript
-import { zip, unzip } from 'zip-json'
+import { zip, unzip } from '@hiddentao/zip-json'
 
 // Create archive from TypeScript files
 const archive = await zip(['src/**/*.ts', 'types/**/*.d.ts'], {
@@ -272,7 +272,7 @@ console.log(`Restored ${restored.length} files`)
 ### Progress Tracking
 
 ```typescript
-import { zip } from 'zip-json'
+import { zip } from '@hiddentao/zip-json'
 
 const archive = await zip(['**/*'], {
   baseDir: './large-project',
@@ -287,7 +287,7 @@ const archive = await zip(['**/*'], {
 ### Selective Extraction
 
 ```typescript
-import { list, unzip } from 'zip-json'
+import { list, unzip } from '@hiddentao/zip-json'
 
 // Load archive
 const archive = JSON.parse(await readFile('backup.json', 'utf8'))
@@ -314,7 +314,7 @@ await unzip(filteredArchive, { outputDir: './js-only' })
 ### Streaming Large Archives
 
 ```typescript
-import { zip } from 'zip-json'
+import { zip } from '@hiddentao/zip-json'
 
 // For very large archives, use progress callbacks to provide feedback
 const archive = await zip(['**/*'], {

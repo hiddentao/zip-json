@@ -6,7 +6,7 @@
 
 [![CI](https://github.com/hiddentao/zip-json/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hiddentao/zip-json/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/hiddentao/zip-json/badge.svg?branch=main)](https://coveralls.io/github/hiddentao/zip-json?branch=main)
-[![npm version](https://badge.fury.io/js/zip-json.svg)](https://badge.fury.io/js/zip-json)
+[![npm version](https://badge.fury.io/js/%40hiddentao%2Fzip-json.svg)](https://badge.fury.io/js/%40hiddentao%2Fzip-json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
@@ -42,19 +42,19 @@ Perfect for bundling assets, creating portable backups, or embedding resources d
 
 ```bash
 # Using Bun (recommended)
-bun add zip-json
+bun add @hiddentao/zip-json
 
 # Using npm
-npm install zip-json
+npm install @hiddentao/zip-json
 
 # Global CLI installation
-bun add -g zip-json
+bun add -g @hiddentao/zip-json
 ```
 
 ### Basic Usage
 
 ```typescript
-import { zip, unzip, list } from 'zip-json'
+import { zip, unzip, list } from '@hiddentao/zip-json'
 
 // Create an archive
 const archive = await zip(['src/**/*.ts', '*.md'], {
@@ -99,7 +99,7 @@ zip-json zip "src/**/*" -o backup.json --quiet
 ### Basic File Archiving
 
 ```typescript
-import { zip, unzip } from 'zip-json'
+import { zip, unzip } from '@hiddentao/zip-json'
 
 // Archive TypeScript source files
 const sourceArchive = await zip(['src/**/*.ts', 'types/**/*.d.ts'], {
@@ -121,7 +121,7 @@ await unzip(archive, {
 ### Progress Tracking
 
 ```typescript
-import { zip } from 'zip-json'
+import { zip } from '@hiddentao/zip-json'
 
 const archive = await zip(['**/*'], {
   baseDir: './large-project',
@@ -140,7 +140,7 @@ const archive = await zip(['**/*'], {
 ### Error Handling
 
 ```typescript
-import { zip, FileNotFoundError, PermissionError } from 'zip-json'
+import { zip, FileNotFoundError, PermissionError } from '@hiddentao/zip-json'
 
 try {
   const archive = await zip(['src/**/*.ts'])
@@ -174,7 +174,7 @@ await unzip(receivedArchive, { outputDir: './deployed' })
 ### Selective File Operations
 
 ```typescript
-import { list, unzip } from 'zip-json'
+import { list, unzip } from '@hiddentao/zip-json'
 
 // Load archive and inspect contents
 const archive = await Bun.file('backup.json').json()

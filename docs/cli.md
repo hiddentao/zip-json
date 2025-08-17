@@ -15,13 +15,13 @@ This document provides comprehensive documentation for the zip-json command-line
 
 ```bash
 # Install globally
-bun add -g zip-json
+bun add -g @hiddentao/zip-json
 # or
-npm install -g zip-json
+npm install -g @hiddentao/zip-json
 
 # Or run directly with bunx/npx
-bunx zip-json --help
-npx zip-json --help
+bunx @hiddentao/zip-json --help
+npx @hiddentao/zip-json --help
 ```
 
 ## Quick Start

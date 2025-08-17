@@ -1,5 +1,5 @@
 {
-  "name": "zip-json",
+  "name": "@hiddentao/zip-json",
   "version": "1.0.0",
   "description": "Zip files and folders into a JSON format for bundling and runtime extraction",
   "keywords": [
@@ -10,11 +10,15 @@
     "archive",
     "bun"
   ],
-  "author": "Your Name",
+  "author": "Ramesh Nair <ram@hiddentao.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/zip-json.git"
+    "url": "https://github.com/hiddentao/zip-json.git"
+  },
+  "homepage": "https://github.com/hiddentao/zip-json",
+  "bugs": {
+    "url": "https://github.com/hiddentao/zip-json/issues"
   },
   "type": "module",
   "main": "./dist/cjs/index.js",
