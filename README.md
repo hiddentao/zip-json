@@ -1,7 +1,7 @@
 # zip-json
 
-[![CI](https://github.com/hiddentao/zip-json/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/hiddentao/zip-json/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/hiddentao/zip-json/badge.svg?branch=master)](https://coveralls.io/github/hiddentao/zip-json?branch=master)
+[![CI](https://github.com/hiddentao/zip-json/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hiddentao/zip-json/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/hiddentao/zip-json/badge.svg?branch=main)](https://coveralls.io/github/hiddentao/zip-json?branch=main)
 [![npm version](https://badge.fury.io/js/zip-json.svg)](https://badge.fury.io/js/zip-json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
