@@ -1,6 +1,6 @@
 {
   "name": "@hiddentao/zip-json",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Zip files and folders into JSON format for Bun native binaries with runtime extraction - perfect for embedding Drizzle ORM scripts",
   "keywords": [
     "zip",
@@ -57,7 +57,6 @@
     "check": "biome check ./src ./tests",
     "prepublishOnly": "bun run build && bun run test:coverage",
     "postbuild": "chmod +x bin/zip-json.js",
-    "prepare": "husky",
     "commit": "cz"
   },
   "dependencies": {
