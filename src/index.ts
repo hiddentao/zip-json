@@ -7,12 +7,14 @@ import type {
   ZipJsonData,
   ZipOptions,
 } from "./core/types.js"
+import { validatePatterns } from "./utils/validation.js"
 
 export class ZipJson {
   private archiver = new Archiver()
   private extractor = new Extractor()
 
   async zip(patterns: string[], options?: ZipOptions): Promise<ZipJsonData> {
+    validatePatterns(patterns)
     return this.archiver.archive(patterns, options)
   }
 
