@@ -44,6 +44,7 @@
     "dist",
     "bin",
     "README.md",
+    "logo.png",
     "LICENSE.md"
   ],
   "scripts": {
