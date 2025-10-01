@@ -1,6 +1,6 @@
 {
   "name": "@hiddentao/zip-json",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Zip files and folders into JSON format for Bun native binaries with runtime extraction - perfect for embedding Drizzle ORM scripts",
   "keywords": [
     "zip",
